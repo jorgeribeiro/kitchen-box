@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('measure', ['g', 'kg', 'pieces']);
+            $table->string('measure');
             $table->string('supplier');
             $table->timestamps();
         });

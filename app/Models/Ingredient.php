@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\IngredientMeasures;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,5 +19,14 @@ class Ingredient extends Model
         'name',
         'measure',
         'supplier',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'measure' => IngredientMeasures::class,
     ];
 }
