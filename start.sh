@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Generate .env file if it doesn't exist
+if [ ! -f .env ]; then
+    cp .env.example .env
+fi
+
+# Generate app key if it doesn't exist
+if [ ! -f .env.key ]; then
+    docker-compose exec app php artisan key:generate --ansi
+fi
+
 # Start the Docker containers
 docker-compose up -d
 
