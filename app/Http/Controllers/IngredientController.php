@@ -11,7 +11,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class IngredientController extends Controller
 {
-
+    /**
+     * @return JsonResource
+     */
     public function index(): JsonResource
     {
         return new IngredientCollection(Ingredient::paginate());
