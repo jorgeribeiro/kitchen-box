@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRecipeRequest;
+use App\Http\Resources\RecipeCollection;
 use App\Models\Recipe;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class RecipeController extends Controller
 {
+    /**
+     * @return JsonResource
+     */
+    public function index(): JsonResource
+    {
+        return new RecipeCollection(Recipe::paginate());
+    }
+
     /**
      * @param StoreRecipeRequest $request
      * @return JsonResponse
