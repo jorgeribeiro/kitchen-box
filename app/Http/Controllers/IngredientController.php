@@ -10,6 +10,16 @@ use Illuminate\Http\JsonResponse;
 class IngredientController extends Controller
 {
     /**
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        $ingredients = Ingredient::paginate(10);
+
+        return response()->json($ingredients);
+    }
+
+    /**
      * @param StoreIngredientRequest $request
      * @return JsonResponse
      */

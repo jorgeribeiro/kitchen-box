@@ -10,5 +10,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(IngredientController::class)->group(function () {
+    Route::get('/ingredients', 'index');
     Route::post('/ingredients', 'store');
 });
