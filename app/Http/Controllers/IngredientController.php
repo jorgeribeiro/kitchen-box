@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Enums\IngredientMeasures;
 use App\Http\Requests\StoreIngredientRequest;
+use App\Http\Resources\IngredientCollection;
 use App\Models\Ingredient;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class IngredientController extends Controller
 {
-    /**
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
-    {
-        $ingredients = Ingredient::paginate(10);
 
-        return response()->json($ingredients);
+    public function index(): JsonResource
+    {
+        return new IngredientCollection(Ingredient::paginate());
     }
 
     /**
@@ -25,12 +23,12 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request): JsonResponse
     {
-        $ingredient = Ingredient::create([
+        Ingredient::create([
             'name' => $request->string('name'),
             'measure' => $request->enum('measure', IngredientMeasures::class),
             'supplier' => $request->string('supplier'),
         ]);
 
-        return response()->json($ingredient);
+        return response()->json(['message' => 'Ingredient created successfully'], 201);
     }
 }
