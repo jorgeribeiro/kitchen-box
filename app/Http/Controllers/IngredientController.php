@@ -26,9 +26,9 @@ class IngredientController extends Controller
     public function store(StoreIngredientRequest $request): JsonResponse
     {
         Ingredient::create([
-            'name' => $request->string('name'),
+            'name' => $request->input('name'),
             'measure' => $request->enum('measure', IngredientMeasures::class),
-            'supplier' => $request->string('supplier'),
+            'supplier' => $request->input('supplier'),
         ]);
 
         return response()->json(['message' => 'Ingredient created successfully'], 201);
