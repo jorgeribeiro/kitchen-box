@@ -18,7 +18,12 @@ class RecipeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'ingredients' => IngredientResource::collection($this->ingredients),
+            'ingredients' => $this->ingredients->map(function ($ingredient) {
+                return [
+                    'name' => $ingredient->name,
+                    'amount' => "{$ingredient->pivot->amount} {$ingredient->measure->value}",
+                ];
+            })
         ];
     }
 }
