@@ -5,10 +5,16 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Generate app key if it doesn't exist
-if [ ! -f .env.key ]; then
+# Check if APP_KEY is already set
+if grep -q "^APP_KEY=" .env; then
+    echo "APP_KEY is already set in the .env file."
+else
+    # Generate app key if it doesn't exist
     docker-compose exec app php artisan key:generate --ansi
 fi
+
+# Install Composer dependencies
+docker-compose exec app composer install --no-interaction --prefer-dist
 
 # Start the Docker containers
 docker-compose up -d
