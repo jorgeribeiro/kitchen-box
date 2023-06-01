@@ -23,7 +23,7 @@ class RecipeResource extends JsonResource
                     'name' => $ingredient->name,
                     'amount' => "{$ingredient->pivot->amount} {$ingredient->measure->value}",
                 ];
-            })
+            }),
         ];
     }
 }
