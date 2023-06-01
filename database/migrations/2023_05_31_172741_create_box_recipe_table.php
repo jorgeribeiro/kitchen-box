@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('box_id');
             $table->unsignedBigInteger('recipe_id');
-            $table->timestamps();
 
             $table->foreign('box_id')->references('id')->on('boxes')->onDelete('cascade');
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
