@@ -19,8 +19,10 @@ class BoxFactory extends Factory
      */
     public function definition(): array
     {
+        $deliveryDate = fake()->dateTimeBetween('+2 days', '+7 days');
+
         return [
-            'delivery_date' => fake()->date,
+            'delivery_date' => $deliveryDate,
             'user_id' => User::factory(),
         ];
     }
