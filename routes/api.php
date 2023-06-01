@@ -24,6 +24,8 @@ Route::controller(RecipeController::class)->group(function () {
     Route::post('/recipes', 'store');
 });
 
-Route::controller(BoxController::class)->group(function () {
-    Route::post('/boxes', 'store');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::controller(BoxController::class)->group(function () {
+        Route::post('/boxes', 'store');
+    });
 });
