@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\IngredientMeasures;
+use App\Actions\StoreIngredientAction;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Resources\IngredientCollection;
 use App\Models\Ingredient;
@@ -21,15 +21,12 @@ class IngredientController extends Controller
 
     /**
      * @param StoreIngredientRequest $request
+     * @param StoreIngredientAction $storeIngredientAction
      * @return JsonResponse
      */
-    public function store(StoreIngredientRequest $request): JsonResponse
+    public function store(StoreIngredientRequest $request, StoreIngredientAction $storeIngredientAction): JsonResponse
     {
-        Ingredient::create([
-            'name' => $request->input('name'),
-            'measure' => $request->enum('measure', IngredientMeasures::class),
-            'supplier' => $request->input('supplier'),
-        ]);
+        $storeIngredientAction->handle($request);
 
         return response()->json(['message' => 'Ingredient created successfully'], 201);
     }

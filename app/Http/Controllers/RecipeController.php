@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\StoreRecipeAction;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Resources\RecipeCollection;
 use App\Models\Recipe;
@@ -20,21 +21,12 @@ class RecipeController extends Controller
 
     /**
      * @param StoreRecipeRequest $request
+     * @param StoreRecipeAction $storeRecipeAction
      * @return JsonResponse
      */
-    public function store(StoreRecipeRequest $request): JsonResponse
+    public function store(StoreRecipeRequest $request, StoreRecipeAction $storeRecipeAction): JsonResponse
     {
-        // Create the recipe
-        $recipe = Recipe::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-        ]);
-
-        // Attach ingredients with amounts to the recipe
-        $ingredients = $request->input('ingredients');
-        foreach ($ingredients as $ingredient) {
-            $recipe->ingredients()->attach($ingredient['id'], ['amount' => $ingredient['amount']]);
-        }
+        $storeRecipeAction->handle($request);
 
         return response()->json(['message' => 'Recipe created successfully'], 201);
     }
