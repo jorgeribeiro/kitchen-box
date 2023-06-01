@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\GetIngredientsToOrderAction;
 use App\Actions\StoreIngredientAction;
+use App\Http\Requests\GetIngredientsToOrderRequest;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Resources\IngredientCollection;
 use App\Models\Ingredient;
@@ -29,5 +31,19 @@ class IngredientController extends Controller
         $storeIngredientAction->handle($request);
 
         return response()->json(['message' => 'Ingredient created successfully'], 201);
+    }
+
+    /**
+     * @param GetIngredientsToOrderRequest $request
+     * @param GetIngredientsToOrderAction $getIngredientsToOrderAction
+     * @return JsonResponse
+     */
+    public function ingredientsToOrder(
+        GetIngredientsToOrderRequest $request,
+        GetIngredientsToOrderAction $getIngredientsToOrderAction
+    ): JsonResponse {
+        $ingredients = $getIngredientsToOrderAction->handle($request);
+
+        return response()->json($ingredients);
     }
 }

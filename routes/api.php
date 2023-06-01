@@ -17,6 +17,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::controller(IngredientController::class)->group(function () {
     Route::get('/ingredients', 'index');
     Route::post('/ingredients', 'store');
+    Route::get('/ingredients/order', 'ingredientsToOrder');
 });
 
 Route::controller(RecipeController::class)->group(function () {
