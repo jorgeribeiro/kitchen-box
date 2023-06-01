@@ -13,7 +13,6 @@ class StoreBoxAction implements ActionInterface
      */
     public function handle(Request $request): Box
     {
-
         // Create the box
         $box = Box::create([
             'delivery_date' => $request->input('delivery_date'),
