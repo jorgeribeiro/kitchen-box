@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
 //            UserSeeder::class,
 //            IngredientSeeder::class,
-//            RecipeSeeder::class
+//            RecipeSeeder::class,
+//            BoxSeeder::class,
         ]);
     }
 }
