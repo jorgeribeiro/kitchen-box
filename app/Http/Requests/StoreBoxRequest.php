@@ -7,13 +7,14 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreBoxRequest extends FormRequest
 {
     private const MIN_DELIVERY_PERIOD = '48 hours';
+    private const MAX_RECIPE_COUNT = 4;
 
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -27,7 +28,7 @@ class StoreBoxRequest extends FormRequest
 
         return [
             'delivery_date' => "required|date|after:$mininumDeliveryDate",
-            'recipe_ids' => 'required|array|max:4',
+            'recipe_ids' => 'required|array|max:' . self::MAX_RECIPE_COUNT,
             'recipe_ids.*' => 'exists:recipes,id',
         ];
     }
