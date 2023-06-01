@@ -14,7 +14,6 @@ class AuthenticateUserAction implements ActionInterface
     public function handle(Request $request): ?string
     {
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
