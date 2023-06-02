@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Actions\StoreBoxAction;
 use App\Http\Requests\StoreBoxRequest;
 use App\Http\Resources\BoxResource;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BoxController extends Controller
 {
     /**
      * @param StoreBoxRequest $request
      * @param StoreBoxAction $storeBoxAction
-     * @return JsonResource
+     * @return JsonResponse
      */
-    public function store(StoreBoxRequest $request, StoreBoxAction $storeBoxAction): JsonResource
+    public function store(StoreBoxRequest $request, StoreBoxAction $storeBoxAction): JsonResponse
     {
         $box = $storeBoxAction->handle($request);
 
-        return new BoxResource($box);
+        return response()->json(new BoxResource($box));
     }
 }

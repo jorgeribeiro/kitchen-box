@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\StoreRecipeAction;
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Resources\RecipeCollection;
+use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,8 +27,8 @@ class RecipeController extends Controller
      */
     public function store(StoreRecipeRequest $request, StoreRecipeAction $storeRecipeAction): JsonResponse
     {
-        $storeRecipeAction->handle($request);
+        $recipe = $storeRecipeAction->handle($request);
 
-        return response()->json(['message' => 'Recipe created successfully'], 201);
+        return response()->json(new RecipeResource($recipe));
     }
 }

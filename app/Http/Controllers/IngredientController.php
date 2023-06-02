@@ -25,13 +25,13 @@ class IngredientController extends Controller
     /**
      * @param StoreIngredientRequest $request
      * @param StoreIngredientAction $storeIngredientAction
-     * @return JsonResource
+     * @return JsonResponse
      */
-    public function store(StoreIngredientRequest $request, StoreIngredientAction $storeIngredientAction): JsonResource
+    public function store(StoreIngredientRequest $request, StoreIngredientAction $storeIngredientAction): JsonResponse
     {
         $ingredient = $storeIngredientAction->handle($request);
 
-        return new IngredientResource($ingredient);
+        return response()->json(new IngredientResource($ingredient));
     }
 
     /**
