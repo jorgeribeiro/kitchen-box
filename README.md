@@ -64,7 +64,7 @@ Example payload:
 GET http://localhost:8080/api/recipes?page=1
 ```
 
-5. **Login:**
+5. **Login:** (returns a token)
 ```
 POST http://localhost:8080/api/login
 ```
@@ -77,7 +77,7 @@ Example payload:
 }
 ```
 
-6. **Create a box for a customer:** (requires authentication, send the token)
+6. **Create a box for a customer:** (authentication required, include the token in the headers as a Bearer Token)
 ```
 POST http://localhost:8080/api/boxes
 ```
@@ -92,7 +92,7 @@ Example payload:
 
 7. **List of ingredients to be ordered:**
 ```
-GET http://localhost:8080/api/ingredients/order
+GET http://localhost:8080/api/ingredients/order?order_date=2023-07-01
 ```
 
 ## Improvements
