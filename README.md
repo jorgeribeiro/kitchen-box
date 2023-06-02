@@ -22,6 +22,15 @@ The following endpoints are available in the API:
 POST http://localhost:8080/api/ingredients
 ```
 
+Example payload:
+```
+{
+  "name": "Sugar",
+  "measure": "g",
+  "supplier": "ABC Supplier"
+}
+```
+
 2. **List ingredients with pagination:** 
 ```
 GET http://localhost:8080/api/ingredients?page=1
@@ -30,6 +39,24 @@ GET http://localhost:8080/api/ingredients?page=1
 3. **Create a recipe:**
 ```
 POST http://localhost:8080/api/recipes
+```
+
+Example payload:
+```
+{
+  "name": "Chocolate Cake",
+  "description": "A delicious chocolate cake recipe",
+  "ingredients": [
+    {
+      "id": 1,
+      "amount": 200
+    },
+    {
+      "id": 2,
+      "amount": 10
+    }
+  ]
+}
 ```
 
 4. **List recipes with pagination:**
@@ -42,9 +69,30 @@ GET http://localhost:8080/api/recipes?page=1
 POST http://localhost:8080/api/login
 ```
 
-6. **Create a box for a customer:** (requires authentication)
+Example payload:
+```
+{
+  "email": "user@example.com",
+  "password": "password"
+}
+```
+
+6. **Create a box for a customer:** (requires authentication, send the token)
 ```
 POST http://localhost:8080/api/boxes
+```
+
+Example payload:
+```
+{
+  "delivery_date": "2023-07-01",
+  "recipe_ids": [1, 2, 3]
+}
+```
+
+7. **List of ingredients to be ordered:**
+```
+GET http://localhost:8080/api/ingredients/order
 ```
 
 ## Improvements
