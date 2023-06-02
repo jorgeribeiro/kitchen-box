@@ -2,7 +2,7 @@
 
 ## Description
 
-The Kitchen Box API is an application designed to manage the operations of a kitchen box service. It provides various endpoints for ingredient and recipe management, as well as the creation and fulfillment of customer orders. The primary goal is to deliver fresh ingredients to customers.
+The Kitchen Box API is an application designed to manage the operations of a kitchen box service. It provides various endpoints for ingredient and recipe management, as well as the creation and fulfillment of customer orders. The primary goal is to deliver fresh ingredients to customers by checking the boxes that have been ordered on a weekly basis.
 
 ## Setup
 
