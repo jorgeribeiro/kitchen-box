@@ -46,8 +46,7 @@ POST http://localhost:8080/api/login
 ```
 POST http://localhost:8080/api/boxes
 ```
+
 ## Improvements
 
-Here are some areas for improvement:
-
-- **Write unit and integration tests:** Adding tests will ensure the stability and reliability of the application.
+- Write unit and integration tests
