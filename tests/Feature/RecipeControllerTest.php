@@ -42,7 +42,7 @@ class RecipeControllerTest extends TestCase
             'ingredients' => [
                 ['id' => $ingredient1->id, 'amount' => 200],
                 ['id' => $ingredient2->id, 'amount' => 300],
-            ]
+            ],
         ];
         $response = $this->postJson('/api/recipes', $payload);
         $response->assertOk();
@@ -57,8 +57,8 @@ class RecipeControllerTest extends TestCase
                 [
                     'name' => $ingredient2->name,
                     'amount' => "300 {$ingredient2->measure->value}",
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 }
